@@ -1,13 +1,13 @@
 # Windows Keylogger
 
-Currently working on keylogger for ```Windows```. The purpose of the application is:
-* Silently, read all keystrokes that a user enters.
+Currently working on a keylogger for ```Windows```. The purpose of the application is to:
+* Silently read all keystrokes that a user enters.
 * Maintain low cpu usage and operate behind the scenes. 
 * Generate a txt file when the application is finished running.
 
 ## Getting Started
 
-Ensure that you are running this application on ```Windows```.
+Ensure that you are compiling and running this application on ```Windows```. It will not work on ```Linux``` and ```MacOS```.
 
 ### Prerequisites
 
@@ -15,7 +15,7 @@ You will need to have a C++ compiler installed. Any of the following will do:
 * [Cygwin](https://cygwin.com/)
 * [MinGW](http://www.mingw.org/)
 
-### Installing
+### Compiling & Running
 
 ```g++ keylogger.cpp -o keylogger```
 
