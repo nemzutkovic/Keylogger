@@ -19,7 +19,7 @@ You will need to have a C++ compiler installed. Any of the following will do:
 
 ```g++ keylogger.cpp -o keylogger```
 
-```keylogger```
+```keylogger``` or ```keylogger.exe```
 
 ## License
 
