@@ -1,9 +1,9 @@
 # Windows Keylogger
 
-Currently working on a keylogger for ```Windows```. The purpose of the application is to:
-* Silently read all keystrokes that a user enters.
-* Maintain low cpu usage and operate behind the scenes. 
-* Generate a txt file when the application is finished running.
+This is a keylogger specifically for ```Windows```. The purpose of the application is to:
+* Silently read all letter, number and symbol keystrokes that a user enters.
+* Maintain low cpu usage using system calls and operate behind the scenes. 
+* Generate a txt file displaying all the keys pressed by the user.
 
 ## Getting Started
 
